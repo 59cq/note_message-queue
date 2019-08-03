@@ -22,20 +22,11 @@ int main(){
             printf("通信结束\n");
             break;
         } 
-
     }
+    //删除消息队列
     if(0 > msgctl(msgid,IPC_RMID,NULL)){
         perror("msgctl");
         return -1;
-    }
-    Msg msg = {};
-    for(;;){
-        msgrcv(msgid,&msg,sizeof(Msg),555,0);
-        printf("read:%s\n",msg.data);
-        if(0 == strcmp("quit",msg.data)){
-            printf("通信结束\n");
-            break;
-        }
     }
 }
 
